@@ -1,43 +1,34 @@
-const port = 8080;
-const { render } = require('ejs');
 const express = require('express')
 const app = express()
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded ({ extended: true}))
 app.set('view engine', 'ejs')
-app.get("/", (req, res) => {
-    n1 = ''
-    n2 = ''
-    result = ''
-    res.render("index")
-})
-app.post("/soma", (req, res) => {
-    n1 = parseFloat(req.body.n1)
-    n2 = parseFloat(req.body.n2)
-    result = n1 + n2
-    res.render("index", { result })
-})
-app.post("/multi", (req, res) => {
-    n1 = parseFloat(req.body.n1)
-    n2 = parseFloat(req.body.n2)
-    result = n1 * n2
-    res.render("index", { result })
-})
-app.post("/divi", (req, res) => {
-    n1 = parseFloat(req.body.n1)
-    n2 = parseFloat(req.body.n2)
-    result = n1 / n2
-    res.render("index", { result })
-})
-app.post("/sub", (req, res) => {
-    n1 = parseFloat(req.body.n1)
-    n2 = parseFloat(req.body.n2)
-    result = n1 - n2
-    res.render("index", { result })
+
+app.get('/mon', (request, response) => {
+    resultado = ''
+    response.render('index')
 })
 
+app.post('/soma', (request, response) => {
+    soma = parseFloat(request.body.n1) + parseFloat(request.body.n2)
+    response.render('index', {resultado: soma})
+})
 
+app.post('/subtracao', (request, response) => {
+    sub = parseFloat(request.body.n1) - parseFloat(request.body.n2)
+    response.render('index', {resultado: sub})
+})
 
+app.post('/multiplica', (request, response) => {
+    mult = parseFloat(request.body.n1) * parseFloat(request.body.n2)
+    response.render('index', {resultado: mult}) 
+})
 
+app.post('/divisao', (request, response) => {
+    div = parseFloat(request.body.n1) / parseFloat(request.body.n2)
+    response.render('index', {resultado: div})
+})
 
-
-app.listen(port, () => { console.log(`Servidor funcionando na porta: ${port}`); });
+const PORT = 8080
+app.listen(PORT, () => {
+    console.log("rodano =D")
+})
