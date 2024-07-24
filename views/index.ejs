@@ -1,48 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
-</head>
-<h1>Calculadora</h1>
-<body>
-    <form action="/soma" method="post">
-        <h2>ADIÇÃO</h2>
-        <label for="">Digite o primeiro número</label>
-        <input type="text" name="n1">
-        <label for="">Digite o segundo número</label>
-        <input type="text" name="n2">
-        <input type="submit" value="Somar"></input>
-    </form>
-    <br>
-    <form action="/sub" method="post">
-        <h2>SUBTRAÇÃO</h2>       
-        <label for="">Digite o primeiro número</label>
-        <input type="text" name="n1">
-        <label for="">Digite o segundo número</label>
-        <input type="text" name="n2">
-        <input type="submit" value="Subtrair"></input>
-    </form>
-    <br>
-    <form action="/divi" method="post">
-        <h2>DIVISÃO</h2>  
-        <label for="">Digite o primeiro número</label>
-        <input type="text" name="n1">
-        <label for="">Digite o segundo número</label>
-        <input type="text" name="n2">
-        <input type="submit" value="Dividir"></input>
-    </form>
-    <br>
-    <form action="/multi" method="post">
-        <h2>MULTIPLICAÇÃO</h2>  
-        <label for="">Digite o primeiro número</label>
-        <input type="text" name="n1">
-        <label for="">Digite o segundo número</label>
-        <input type="text" name="n2">
-        <input type="submit" value="Multiplicar"></input>
-    </form>
-    <h3>RESULTADO:</h3>
-    <%=result%>
-</body>
+ <head>
+  <meta charset="UTF-8">
+  <title>Calculadora</title>
+ </head>
+ <body>
+  <h1>Digite dois números:</h1>
+
+  <form id="formi" action="/" method="post">
+   <label> Número 1: </label>
+   <input id= "n1" name="n1"/>
+   <br>
+   <label> Número 2: </label>
+   <input id= "n2" name="n2"/>
+   <br>
+   <br>
+   <input type="button" onclick="error('/soma')" value="+"></input>
+   <input type="button" onclick="error('/subtracao')" value="-"></input>
+   <input type="button" onclick="error('/multiplica')" value="X"></input>
+   <input type="button" onclick="error('/divisao')"value="/">/</input>
+  </form>
+
+  <h1>Resultado:</h1>
+  <h1 id="resultado"><%=resultado%></h1>
+  <script>
+    function error (rota) {
+     formi.action = rota 
+     if(n1.value == '' || n2.value == ''){
+      document.getElementById ('resultado').innerHTML = ''
+      alert('Não deixe o espaço vazio!')
+     } else {
+      if(n2.value == 0 && rota == "/divisao"){
+      document.getElementById ('resultado').innerHTML = ''
+      alert('Digite um número diferente de zero!')
+      } else {
+        formi.submit()
+      }
+     }
+    }
+  </script>
+ </body>
 </html>
